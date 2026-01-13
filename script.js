@@ -230,13 +230,13 @@ class Game {
         // 2. Tuberías
         // Usamos AABB (Axis-Aligned Bounding Box)
         for (const pipe of this.pipes) {
-                // CASO A: Tubería FUTURA (A la derecha del pájaro)
-                if (pipe.x > this.bird.x + this.bird.width) {
-                    break;
-                }
-                // CASO B: Tubería PASADA (A la izquierda del pájaro)
+                // CASO A: Tubería PASADA (A la izquierda del pájaro)
                 if (pipe.x + pipe.width < this.bird.x) {
                     continue;
+                }
+                // CASO B: Tubería FUTURA (A la derecha del pájaro)
+                if (pipe.x > this.bird.x + this.bird.width) {
+                    break;
                 }
                 // CASO C: ZONA DE COLISIÓN (Estamos alineados horizontalmente)
                 if (this.bird.y < pipe.topY || this.bird.y + this.bird.height > pipe.bottomY) {
