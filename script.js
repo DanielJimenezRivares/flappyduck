@@ -169,7 +169,7 @@ class Game {
 
     update(dt) {
         if (this.state === 'PLAYING') {
-            // Cada 10 segundos aumentamos la velocidad
+            // Cada 5 segundos aumentamos la velocidad
             this.difficultyTimer += dt;
             if (this.difficultyTimer > 5) {
                 this.difficultyTimer = 0;
