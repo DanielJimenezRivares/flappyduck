@@ -34,7 +34,7 @@ class Pipe {
         this.x = canvasWidth;
         this.width = canvasWidth / 8;
         this.gap = canvasHeight / 5;
-        this.topY = Math.random() * (canvasHeight - this.gap - 2*canvasHeight/8) + canvasHeight/8;
+        this.topY = Math.random() * (canvasHeight - this.gap - 2*canvasHeight/6) + canvasHeight/6;
         this.bottomY = this.topY + this.gap;
         this.capHeight = 20;
         this.capOverhang = 4;
