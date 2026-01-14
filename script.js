@@ -192,15 +192,6 @@ class Game {
             this.pipes.forEach(pipe => pipe.update(dt));
             this.bird.update(dt);
 
-            while (this.pipes.length > 0) {
-                if (this.pipes[0].x + this.pipes[0].width < 0) {
-                    this.pipes.shift();
-                }
-                else {
-                    break;
-                }
-            }
-
             for (const pipe of this.pipes) {
                 if (pipe.passed) {
                     continue; 
@@ -211,6 +202,15 @@ class Game {
                     this.soundPoint.currentTime = 0;
                     this.soundPoint.play();
                 } 
+                else {
+                    break;
+                }
+            }
+
+            while (this.pipes.length > 0) {
+                if (this.pipes[0].x + this.pipes[0].width < 0) {
+                    this.pipes.shift();
+                }
                 else {
                     break;
                 }
