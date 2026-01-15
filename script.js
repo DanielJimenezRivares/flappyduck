@@ -180,7 +180,7 @@ class Game {
                 if (this.pipeSpawnRate > this.minPipeSpawnRate) {
                     this.pipeSpawnRate -= 0.025;
                 }
-                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed + " px/s | Intervalo de generación: " + this.pipeSpawnRate.toFixed() + "s");
+                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed + " px/s | Intervalo de generación: " + this.pipeSpawnRate.toFixed(3) + "s");
             }
             
             this.timeSinceLastPipe += dt;
@@ -248,7 +248,7 @@ class Game {
 
     handleCrash() {
         this.state = 'CRASHED';
-        this.soundCrash.currentTime = 0.3;
+        this.soundCrash.currentTime = 0.4;
         this.soundCrash.play();
         setTimeout(() => {
             this.state = 'GAMEOVER';
