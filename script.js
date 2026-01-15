@@ -6,7 +6,7 @@ class Bird {
     });
 
     static soundFlap = Object.assign(new Audio('assets/wing-flap.mp3'), {
-        volume: 0.4
+        volume: 0.6
     });
 
     static preload() {
