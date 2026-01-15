@@ -106,10 +106,9 @@ class Game {
         this.bird = new Bird(this.canvas.width, this.canvas.height);
         this.pipes = [];
         this.timeSinceLastPipe = 0;
+        this.pipeSpacing = this.canvas.width * 0.6;
         this.gameSpeed = 150;      
         this.maxSpeed = 300;
-        this.pipeSpawnRate = 1.5;
-        this.minPipeSpawnRate = 0.75;
         this.difficultyTimer = 0;
 
         this.soundPoint = new Audio('assets/ding.mp3');
@@ -187,14 +186,13 @@ class Game {
                     this.gameSpeed += 5;
                     this.pipes.forEach(pipe => pipe.speed = this.gameSpeed);
                 }
-                if (this.pipeSpawnRate > this.minPipeSpawnRate) {
-                    this.pipeSpawnRate -= 0.025;
-                }
-                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed + " px/s | Intervalo de generación: " + this.pipeSpawnRate.toFixed(3) + "s");
+                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed);
             }
             
+            const spawnRate = this.pipeSpacing / this.gameSpeed;
+
             this.timeSinceLastPipe += dt;
-            if (this.timeSinceLastPipe > this.pipeSpawnRate) {
+            if (this.timeSinceLastPipe > spawnRate) {
                 this.pipes.push(new Pipe(this.canvas.width, this.canvas.height, this.gameSpeed));
                 this.timeSinceLastPipe = 0;
             }
