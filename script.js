@@ -186,7 +186,7 @@ class Game {
                     this.gameSpeed += 5;
                     this.pipes.forEach(pipe => pipe.speed = this.gameSpeed);
                 }
-                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed);
+                console.log("¡Nivel Subido! Velocidad: " + this.gameSpeed + " px/s");
             }
             
             const spawnRate = this.pipeSpacing / this.gameSpeed;
