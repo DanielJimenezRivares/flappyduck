@@ -1,6 +1,22 @@
 class Bird {
-    static image = new Image();
-    static soundFlap = new Audio('assets/wing-flap.mp3');
+    static image = Object.assign(new Image(), {
+        src: 'assets/duck.png',
+        alt: 'Duck Sprite',
+        decoding: 'async'
+    });
+
+    static soundFlap = Object.assign(new Audio('assets/wing-flap.mp3'), {
+        volume: 0.4
+    });
+
+    static preload() {
+        return this.image.decode().catch(() => {
+            return new Promise((resolve, reject) => {
+                this.image.onload = resolve;
+                this.image.onerror = reject;
+            });
+        });
+    }
 
     constructor(canvasWidth, canvasHeight) {
         this.x = canvasWidth / 8;
@@ -91,7 +107,7 @@ class Game {
         this.pipes = [];
         this.timeSinceLastPipe = 0;
         this.gameSpeed = 150;      
-        this.maxSpeed = 250;
+        this.maxSpeed = 300;
         this.pipeSpawnRate = 1.5;
         this.minPipeSpawnRate = 0.75;
         this.difficultyTimer = 0;
@@ -100,18 +116,12 @@ class Game {
         this.soundCrash = new Audio('assets/crash.mp3');
         this.soundPoint.volume = 0.1;
 
-        const loadImage = new Promise((resolve) => {
-            Bird.image.onload = () => {
-                resolve();
-            };
-            Bird.image.src = 'assets/duck.png';
-        });
-
+        const loadImage = Bird.preload();
         const loadFont = document.fonts.load('10px "Press Start 2P"');
 
         Promise.all([loadImage, loadFont]).then(() => {
-            this.initInput();
-            this.gameloop(0);
+        this.initInput();
+        this.gameloop(0);
         });
     }
 
